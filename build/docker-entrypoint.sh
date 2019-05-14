@@ -29,7 +29,7 @@ if [ -z "$(ls $DOCUMENT_ROOT)" ]; then
   sed -i "s/\/var\/www\/farm/\/var\/www\/localhost\/htdocs\/farm/g" $DOKUWIKI_ROOT/inc/preload.php
   sed -i "s/\/\/include(fullpath(dirname(__FILE__))/include(fullpath(dirname(__FILE__))/g" $DOKUWIKI_ROOT/inc/preload.php
 
-  sed -i "s/date_default_timezone_set(@date_default_timezone_get());/date_default_timezone_set('Asia/Tokyo');/g" $DOKUWIKI_ROOT/inc/init.php
+  sed -i "s/date_default_timezone_set(@date_default_timezone_get());/date_default_timezone_set('Asia\/Tokyo');/g" $DOKUWIKI_ROOT/inc/init.php
 
   sed -i "s/#LoadModule rewrite_module modules/LoadModule rewrite_module modules/g" $APACHE_ROOT/httpd.conf
   sed -i "s/Options Indexes FollowSymLinks/Options FollowSymLinks/g" $APACHE_ROOT/httpd.conf
