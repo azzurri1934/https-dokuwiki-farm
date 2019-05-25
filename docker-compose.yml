@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 
 services:
   https-portal:
@@ -8,18 +8,30 @@ services:
       - '80:80'
       - '443:443'
     environment:
-      DOMAINS: 'wiki.azzu.mydns.jp -> http://dokuwiki'
-      STAGE: 'production'
+      DOMAINS: 'wiki.azzu.mydns.jp -> http://dokuwiki-farms'
+#      STAGE: 'production'
+      STAGE: 'local'
     volumes:
-       - '~/docker/https-portal/volume:/var/lib/https-portal'
+       - type: volume
+         source: https-portal
+         target: /var/lib/https-portal
  
-  dokuwiki:
-    build: ./build
-    image: 'azzurri1934/dokuwiki:0.1'
-    container_name: dokuwiki
+  dokuwiki-farms:
+#    build: ./build
+    image: 'azzurri1934/dokuwiki-farms:0.1'
+    container_name: dokuwiki-farms
     restart: always
     ports:
       - '80'
     volumes:
-      - '~/docker/dokuwiki/volume/apache2:/etc/apache2'
-      - '~/docker/dokuwiki/volume/htdocs:/var/www/localhost/htdocs'
+      - type: volume
+        source: apache2
+        target: /etc/apache2
+      - type: volume
+        source: htdocs
+        target: /var/www/localhost/htdocs
+
+volumes:
+  https-portal:
+  apache2:
+  htdocs:
