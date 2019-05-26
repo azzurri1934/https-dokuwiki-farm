@@ -18,7 +18,7 @@ services:
  
   dokuwiki-farms:
 #    build: ./build
-    image: 'azzurri1934/dokuwiki-farms:0.1'
+    image: 'azzurri1934/dokuwiki-farms:0.0.1'
     container_name: dokuwiki-farms
     restart: always
     ports:
