@@ -4,6 +4,7 @@ services:
   https-portal:
     image: steveltn/https-portal:1.7.1
     container_name: https-portal
+    restart: always
     ports:
       - '80:80'
       - '443:443'
@@ -15,9 +16,9 @@ services:
        - type: volume
          source: https-portal
          target: /var/lib/https-portal
- 
+
   dokuwiki-farms:
-#    build: ./build
+    build: ./build
     image: 'azzurri1934/dokuwiki-farms:0.0.1'
     container_name: dokuwiki-farms
     restart: always
